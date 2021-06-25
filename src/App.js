@@ -1,24 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import './css/App.css';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from 'react-router-dom';
+import { Box } from 'grommet';
+import Header from './components/Header';
+import About from './components/About';
+import Genetics from './components/Genetics';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Header/>
+        <Box>
+          <Switch>
+            <Route path="/about">
+              <About />
+            </Route>
+            <Route path="/genetics">
+              <Genetics />
+            </Route>
+            <Route path="/">
+              <p> Testing Landing </p>
+            </Route>
+          </Switch>
+        </Box>
+      </div>
+    </Router>
   );
 }
 

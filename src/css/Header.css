@@ -1,0 +1,19 @@
+.Logo {
+    width: 30vw;
+}
+
+.Header-Link {
+    text-decoration: none;
+}
+
+.Header-Link-Text {
+    color: #C7CFA0;
+    font-family: 'Staatliches';
+}
+
+.Header-Divider {
+    background-color: #C7CFA0;
+    border-width: 0;
+    width: 98vw;
+    height: 3px;
+}
