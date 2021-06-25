@@ -1,10 +1,12 @@
 import React from 'react';
-import { Box } from 'grommet';
-import '../css/Header.css';
+import { Image, Grid } from 'grommet';
+import '../css/Genetics.css';
 
 function Genetics(props) {
     return (
-        <p> Genetics Page </p>
+        <Grid>
+            <Image fit="cover" src="/planter.png" />
+        </Grid>
     )
 }
 

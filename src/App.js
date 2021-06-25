@@ -14,7 +14,7 @@ function App() {
     <Router>
       <div className="App">
         <Header/>
-        <Box>
+        <Box margin="medium">
           <Switch>
             <Route path="/about">
               <About />
