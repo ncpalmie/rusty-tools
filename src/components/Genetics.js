@@ -42,6 +42,7 @@ function Genetics(props) {
       >
         {plants.map((plant) => (
           <Plant
+            key={plant.id}
             id={plant.id}
             togglePlant={togglePlant}
             areaName={plant.areaName}

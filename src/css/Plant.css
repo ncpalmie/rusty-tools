@@ -3,3 +3,18 @@
   height: 100px;
   outline: none;
 }
+
+.Plant-Box {
+  position: relative;
+}
+
+.Plant-Card {
+  position: absolute;
+  z-index: 1;
+  left: 110px;
+  outline: none;
+}
+
+.Plant-Card-Header {
+  font-family: "Staatliches";
+}
