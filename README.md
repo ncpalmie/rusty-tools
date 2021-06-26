@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -68,3 +69,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+=======
+# rusty-tools
+React webpage which contains tools for calculating things related to the game Rust. Currently implemented tools include a plant genetics simulator and future tools include resource calculators and scrap excursion estimations.
+>>>>>>> 8d3bbecf4c09a923b5691efade641bab99187d59
