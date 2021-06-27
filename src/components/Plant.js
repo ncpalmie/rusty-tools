@@ -34,7 +34,8 @@ function Plant(props) {
             >
               <CardHeader
                 className="Plant-Card-Header"
-                pad={{ top: "xsmall", left: "medium" }}
+                pad="small"
+                justify="center"
               >
                 {"Plant " + props.id}
               </CardHeader>

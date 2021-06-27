@@ -5,13 +5,11 @@
 }
 
 .Plant-Box {
-  position: relative;
 }
 
 .Plant-Card {
   position: absolute;
   z-index: 1;
-  left: 110px;
   outline: none;
 }
 
