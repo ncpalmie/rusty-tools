@@ -7,10 +7,20 @@
 .Plant-Box {
 }
 
+.Gene-Image {
+  border-radius: 50%;
+}
+
+.Gene-Button {
+  border: none;
+  outline: none;
+}
+
 .Plant-Card {
   position: absolute;
-  z-index: 1;
   outline: none;
+  margin-left: 100px;
+  user-select: none;
 }
 
 .Plant-Card-Header {

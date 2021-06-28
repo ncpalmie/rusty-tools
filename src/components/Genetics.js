@@ -3,21 +3,33 @@ import { Box, Grid } from "grommet";
 import Plant from "./Plant";
 import "../css/Genetics.css";
 
+const generateGenes = () => {
+  const gene_array = ["x", "w", "g", "y", "h"];
+  const genes = [];
+  for (var i = 0; i <= 5; i++) {
+    genes.push(gene_array[Math.floor(Math.random() * gene_array.length)]);
+  }
+  return genes;
+};
+
 function Genetics(props) {
   const [plants, setPlants] = useState([
-    { id: 0, areaName: "plant0", visible: false, gene: "______" },
-    { id: 1, areaName: "plant1", visible: false, gene: "______" },
-    { id: 2, areaName: "plant2", visible: false, gene: "______" },
-    { id: 3, areaName: "plant3", visible: false, gene: "______" },
-    { id: 4, areaName: "plant4", visible: false, gene: "______" },
-    { id: 5, areaName: "plant5", visible: false, gene: "______" },
-    { id: 6, areaName: "plant6", visible: false, gene: "______" },
-    { id: 7, areaName: "plant7", visible: false, gene: "______" },
-    { id: 8, areaName: "plant8", visible: false, gene: "______" },
+    { id: 0, areaName: "plant0", visible: false, genes: generateGenes() },
+    { id: 1, areaName: "plant1", visible: false, genes: generateGenes() },
+    { id: 2, areaName: "plant2", visible: false, genes: generateGenes() },
+    { id: 3, areaName: "plant3", visible: false, genes: generateGenes() },
+    { id: 4, areaName: "plant4", visible: false, genes: generateGenes() },
+    { id: 5, areaName: "plant5", visible: false, genes: generateGenes() },
+    { id: 6, areaName: "plant6", visible: false, genes: generateGenes() },
+    { id: 7, areaName: "plant7", visible: false, genes: generateGenes() },
+    { id: 8, areaName: "plant8", visible: false, genes: generateGenes() },
   ]);
 
   const togglePlant = (id) => {
     const newPlants = [...plants];
+    if (newPlants[id].visible) {
+      newPlants[id].genes = generateGenes();
+    }
     newPlants[id].visible = !newPlants[id].visible;
     setPlants(newPlants);
   };
@@ -47,6 +59,7 @@ function Genetics(props) {
             togglePlant={togglePlant}
             areaName={plant.areaName}
             visible={plant.visible}
+            genes={plant.genes}
           />
         ))}
       </Grid>

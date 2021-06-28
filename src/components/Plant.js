@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Box, Card, CardHeader } from "grommet";
+import { Box, Card, DropButton, CardHeader, Image } from "grommet";
 import "../css/Plant.css";
 
 function Plant(props) {
   const [cardVisible, setCardVisible] = useState(true);
+  const gene_array = ["x", "w", "g", "y", "h"];
 
   return (
     <Box
@@ -24,8 +25,7 @@ function Plant(props) {
           {cardVisible ? (
             <Card
               className="Plant-Card"
-              height="small"
-              width="medium"
+              height="xsmall"
               background="#C7CFA0"
               onMouseEnter={() => setCardVisible(true)}
               onClick={(e) => {
@@ -39,6 +39,24 @@ function Plant(props) {
               >
                 {"Plant " + props.id}
               </CardHeader>
+              <Box
+                direction="row"
+                alignSelf="center"
+                margin={{ left: "small", right: "small" }}
+              >
+                {props.genes.map((gene) => (
+                  <DropButton
+                    className="Gene-Button"
+                    label={
+                      <Image className="Gene-Image" src={gene + "_gene.png"} />
+                    }
+                    dropAlign={{ top: "bottom", right: "right" }}
+                    dropContent={gene_array.map((gene) => (
+                      <Image className="Gene-Image" src={gene + "_gene.png"} />
+                    ))}
+                  />
+                ))}
+              </Box>
             </Card>
           ) : null}
         </Box>
