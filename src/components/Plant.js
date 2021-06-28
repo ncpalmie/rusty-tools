@@ -25,7 +25,6 @@ function Plant(props) {
           {cardVisible ? (
             <Card
               className="Plant-Card"
-              height="xsmall"
               background="#C7CFA0"
               onMouseEnter={() => setCardVisible(true)}
               onClick={(e) => {
@@ -37,7 +36,7 @@ function Plant(props) {
                 pad="small"
                 justify="center"
               >
-                {"Plant " + props.id}
+                {"Plant " + (props.id + 1)}
               </CardHeader>
               <Box
                 direction="row"
