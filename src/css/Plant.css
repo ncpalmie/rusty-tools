@@ -11,6 +11,16 @@
   border-radius: 50%;
 }
 
+.Gene-Dropdown-Image {
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  margin-left: 15px;
+}
+
+.Gene-Dropdown-Box {
+}
+
 .Gene-Button {
   border: none;
   outline: none;

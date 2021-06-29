@@ -34,6 +34,12 @@ function Genetics(props) {
     setPlants(newPlants);
   };
 
+  const changeGene = (id, gene_index, new_gene) => {
+    const newPlants = [...plants];
+    newPlants[id].genes[gene_index] = new_gene;
+    setPlants(newPlants);
+  };
+
   return (
     <Box className="Planter-Box" background="url('planter.png')">
       <Grid
@@ -57,6 +63,7 @@ function Genetics(props) {
             key={plant.id}
             id={plant.id}
             togglePlant={togglePlant}
+            changeGene={changeGene}
             areaName={plant.areaName}
             visible={plant.visible}
             genes={plant.genes}
