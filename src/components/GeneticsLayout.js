@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Card, CardHeader, CardBody } from "grommet";
+import { Box, Card, CardHeader, CardBody, Grid } from "grommet";
 import Planter from "./Planter";
 import "../css/GeneticsLayout.css";
 
@@ -29,7 +29,9 @@ function GeneticsLayout(props) {
         </Card>
         <Planter />
       </Box>
-      <Box className="Genetics-Side"></Box>
+      <Box className="Genetics-Side">
+        <Grid className="Simulation-Grid"></Grid>
+      </Box>
     </Box>
   );
 }
