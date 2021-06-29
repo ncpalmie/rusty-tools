@@ -1,20 +1,18 @@
 .Gene-Image {
   border-radius: 50%;
+  height: 40px;
+  width: 40px;
 }
 
 .Gene-Dropdown-Image {
   border-radius: 50%;
   height: 50px;
   width: 50px;
-  margin-left: 15px;
-}
-
-.Gene-Dropdown-Box {
+  margin-left: 5px;
 }
 
 .Gene-Button {
-  border: none;
-  outline: none;
+  width: 50px;
 }
 
 .Plant-Card {

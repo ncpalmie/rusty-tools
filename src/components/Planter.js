@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Box, Grid } from "grommet";
 import Plant from "./Plant";
-import "../css/Genetics.css";
+import "../css/Planter.css";
 
 const generateGenes = () => {
   const gene_array = ["x", "w", "g", "y", "h"];
@@ -12,7 +12,7 @@ const generateGenes = () => {
   return genes;
 };
 
-function Genetics(props) {
+function Planter(props) {
   const [plants, setPlants] = useState([
     { id: 0, areaName: "plant0", visible: false, genes: generateGenes() },
     { id: 1, areaName: "plant1", visible: false, genes: generateGenes() },
@@ -41,7 +41,12 @@ function Genetics(props) {
   };
 
   return (
-    <Box className="Planter-Box" background="url('planter.png')">
+    <Box
+      className="Planter-Box"
+      background="url('planter.png')"
+      alignSelf="center"
+      justify="center"
+    >
       <Grid
         className="Planter-Grid"
         rows={["1/3", "1/3", "1/3"]}
@@ -74,4 +79,4 @@ function Genetics(props) {
   );
 }
 
-export default Genetics;
+export default Planter;

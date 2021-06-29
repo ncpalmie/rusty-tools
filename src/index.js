@@ -11,6 +11,10 @@ ReactDOM.render(
       href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap"
       rel="stylesheet"
     ></link>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap"
+      rel="stylesheet"
+    ></link>
     <App />
   </React.StrictMode>,
   document.getElementById("root")

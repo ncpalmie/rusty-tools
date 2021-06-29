@@ -1,0 +1,20 @@
+.Main-Content {
+  height: 80vh;
+}
+
+.Planter-Card-Header {
+  font-family: "Staatliches";
+  font-size: 45px;
+}
+
+.Planter-Card-Body {
+  width: 550px;
+  font-family: "Montserrat";
+  font-size: 16px;
+}
+
+.Planter-Side {
+}
+
+.Genetics-Side {
+}

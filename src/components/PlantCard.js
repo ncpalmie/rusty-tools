@@ -20,13 +20,14 @@ function PlantCard(props) {
       <Box
         direction="row"
         alignSelf="center"
-        gap="small"
         margin={{ left: "small", right: "small", bottom: "small" }}
+        gap="small"
       >
         {props.genes.map((gene, index) => (
           <DropButton
             className="Gene-Button"
             pad="none"
+            plain={true}
             label={
               <Image
                 className="Gene-Image"
@@ -36,12 +37,12 @@ function PlantCard(props) {
               />
             }
             dropAlign={{ top: "bottom", right: "right" }}
-            dropProps={{ plain: true }}
+            dropProps={{ plain: true, margin: { left: "xxsmall" } }}
             dropContent={
               <Box
                 className="Gene-Dropdown-Box"
                 gap="xsmall"
-                pad={{ top: "xsmall", bottom: "xsmall" }}
+                pad={{ top: "xsmall", bottom: "xsmall", right: "xsmall" }}
                 background="dark-3"
                 round="small"
               >
