@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Card, DropButton, CardHeader, Image } from "grommet";
+import { Box } from "grommet";
 import PlantCard from "./PlantCard";
 import "../css/Plant.css";
 
