@@ -1,0 +1,30 @@
+.Gene-Image {
+  border-radius: 50%;
+}
+
+.Gene-Dropdown-Image {
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  margin-left: 15px;
+}
+
+.Gene-Dropdown-Box {
+}
+
+.Gene-Button {
+  border: none;
+  outline: none;
+}
+
+.Plant-Card {
+  position: absolute;
+  outline: none;
+  margin-left: 100px;
+  user-select: none;
+}
+
+.Plant-Card-Header {
+  font-family: "Staatliches";
+  font-size: 25px;
+}
