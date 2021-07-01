@@ -12,18 +12,33 @@ const generateGenes = () => {
   return genes;
 };
 
+const determineNeighbors = (plantId) => {
+  const neighbors = [];
+
+  if (Math.floor(plantId / 3) !== 0) neighbors.push(plantId - 3);
+  if (plantId % 3 !== 0) neighbors.push(plantId - 1);
+  if (plantId % 3 !== 2) neighbors.push(plantId + 1);
+  if (Math.floor(plantId / 3) !== 2) neighbors.push(plantId + 3);
+
+  return neighbors;
+};
+
+const generatePlantStates = () => {
+  const plants = [];
+  for (var i = 0; i <= 8; i++) {
+    plants.push({
+      id: i,
+      areaName: "plant" + i,
+      visible: false,
+      genes: generateGenes(),
+      neighbors: determineNeighbors(i),
+    });
+  }
+  return plants;
+};
+
 function Planter(props) {
-  const [plants, setPlants] = useState([
-    { id: 0, areaName: "plant0", visible: false, genes: generateGenes() },
-    { id: 1, areaName: "plant1", visible: false, genes: generateGenes() },
-    { id: 2, areaName: "plant2", visible: false, genes: generateGenes() },
-    { id: 3, areaName: "plant3", visible: false, genes: generateGenes() },
-    { id: 4, areaName: "plant4", visible: false, genes: generateGenes() },
-    { id: 5, areaName: "plant5", visible: false, genes: generateGenes() },
-    { id: 6, areaName: "plant6", visible: false, genes: generateGenes() },
-    { id: 7, areaName: "plant7", visible: false, genes: generateGenes() },
-    { id: 8, areaName: "plant8", visible: false, genes: generateGenes() },
-  ]);
+  const [plants, setPlants] = useState(generatePlantStates());
 
   const togglePlant = (id) => {
     const newPlants = [...plants];
