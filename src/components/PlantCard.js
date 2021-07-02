@@ -17,47 +17,59 @@ function PlantCard(props) {
       <CardHeader className="Plant-Card-Header" pad="small" justify="center">
         {"Plant " + (props.id + 1)}
       </CardHeader>
-      <Box
-        direction="row"
-        alignSelf="center"
-        margin={{ left: "small", right: "small", bottom: "small" }}
-        gap="small"
-      >
-        {props.genes.map((gene, index) => (
-          <DropButton
-            className="Gene-Button"
-            pad="none"
-            plain={true}
-            label={
-              <Image
-                className="Gene-Image"
-                src={gene + "_gene.png"}
-                margin="none"
-                alt="gene"
-              />
-            }
-            dropAlign={{ top: "bottom", right: "right" }}
-            dropProps={{ plain: true, margin: { left: "xxsmall" } }}
-            dropContent={
-              <Box
-                className="Gene-Dropdown-Box"
-                gap="xsmall"
-                pad={{ top: "xsmall", bottom: "xsmall", right: "xsmall" }}
-                background="dark-3"
-                round="small"
-              >
-                {gene_array.map((gene_option) => (
-                  <Image
-                    className="Gene-Dropdown-Image"
-                    src={gene_option + "_gene.png"}
-                    onClick={() => {
-                      props.changeGene(props.id, index, gene_option);
-                    }}
-                  />
-                ))}
-              </Box>
-            }
-          />
+      <Box direction="row">
+        {props.genes.map((geneCombination) => (
+          <Box
+            direction="column"
+            alignSelf="center"
+            margin={{ left: "small", right: "small", bottom: "small" }}
+            gap="small"
+          >
+            {geneCombination.map((gene, index) =>
+              props.simPlanter ? (
+                <Image
+                  className="Gene-Image"
+                  src={gene + "_gene.png"}
+                  margin="none"
+                  alt="gene"
+                />
+              ) : (
+                <DropButton
+                  className="Gene-Button"
+                  plain={true}
+                  label={
+                    <Image
+                      className="Gene-Image"
+                      src={gene + "_gene.png"}
+                      margin="none"
+                      alt="gene"
+                    />
+                  }
+                  dropAlign={{ top: "bottom", right: "right" }}
+                  dropProps={{ plain: true, margin: { left: "xxsmall" } }}
+                  dropContent={
+                    <Box
+                      className="Gene-Dropdown-Box"
+                      gap="xsmall"
+                      pad={{ top: "xsmall", bottom: "xsmall", right: "xsmall" }}
+                      background="dark-3"
+                      round="small"
+                    >
+                      {gene_array.map((gene_option) => (
+                        <Image
+                          className="Gene-Dropdown-Image"
+                          src={gene_option + "_gene.png"}
+                          onClick={() => {
+                            props.changeGene(props.id, index, gene_option);
+                          }}
+                        />
+                      ))}
+                    </Box>
+                  }
+                />
+              )
+            )}
+          </Box>
         ))}
       </Box>
     </Card>

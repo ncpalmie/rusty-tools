@@ -19,6 +19,14 @@ const determineNeighbors = (plantId) => {
   if (plantId % 3 !== 0) neighbors.push(plantId - 1);
   if (plantId % 3 !== 2) neighbors.push(plantId + 1);
   if (Math.floor(plantId / 3) !== 2) neighbors.push(plantId + 3);
+  if (plantId % 3 >= 1 && Math.floor(plantId / 3) >= 1)
+    neighbors.push(plantId - 4);
+  if (plantId % 3 <= 1 && Math.floor(plantId / 3) >= 1)
+    neighbors.push(plantId - 2);
+  if (plantId % 3 >= 1 && Math.floor(plantId / 3) <= 1)
+    neighbors.push(plantId + 2);
+  if (plantId % 3 <= 1 && Math.floor(plantId / 3) <= 1)
+    neighbors.push(plantId + 4);
 
   return neighbors;
 };
@@ -101,10 +109,10 @@ function GeneticsLayout(props) {
             wrap={true}
             pad="medium"
           >
-            {"After entering plant genes and configuration in the leftside" +
-              " planter possible genetic results will appear here. Hover over" +
-              " corresponding plants to see what gene combinations may occur." +
-              "may occur. Listed gene combinations are equally likely. "}
+            {"Hovering over these plants will display the possible gene " +
+              "combinations after crossbreeding. If a column contains" +
+              " multiple genes then there is an equally likely chance of" +
+              " getting any of those genes in that column spot on the plant."}
           </CardBody>
         </Card>
         <Planter

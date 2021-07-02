@@ -1,9 +1,81 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Box, Grid } from "grommet";
 import Plant from "./Plant";
 import "../css/Planter.css";
 
 function Planter(props) {
+  const [possibleGeneCombinations, setPossibleGeneCombinations] = useState([]);
+
+  useEffect(() => {
+    const plantGeneLists = [];
+
+    const getPossibleGenes = (geneDict) => {
+      const possibleGenes = [];
+      var maxGeneValue = 0;
+
+      for (var key in geneDict) {
+        if (geneDict[key] > maxGeneValue) {
+          maxGeneValue = geneDict[key];
+        }
+      }
+
+      for (var gene in geneDict) {
+        if (geneDict[gene] === maxGeneValue) possibleGenes.push(gene);
+      }
+      return possibleGenes;
+    };
+
+    const runSimulation = (neighbors) => {
+      const geneCombinations = [];
+
+      for (var i = 0; i <= 5; i++) {
+        const column = i;
+        const geneDict = { w: 0, x: 0, g: 0, y: 0, h: 0 };
+        const columnGenes = neighbors.map((neighbor) => neighbor.genes[column]);
+
+        for (let neighborGene of columnGenes) {
+          if (neighborGene === "x" || neighborGene === "w") {
+            geneDict[neighborGene] = geneDict[neighborGene] + 1;
+          }
+          if (
+            neighborGene === "h" ||
+            neighborGene === "g" ||
+            neighborGene === "y"
+          ) {
+            geneDict[neighborGene] = geneDict[neighborGene] + 0.6;
+          }
+        }
+
+        geneCombinations.push(getPossibleGenes(geneDict));
+      }
+
+      // Cartesian product to get all possible gene arrays
+      const cartestian = (...a) =>
+        a.reduce((a, b) => a.flatMap((d) => b.map((e) => [d, e].flat())));
+      return cartestian(geneCombinations);
+    };
+
+    if (props.simPlanter) {
+      for (var plant of props.plants) {
+        const neighbors = plant.neighbors.map(
+          (neighbor) => props.plants[neighbor]
+        );
+        const geneArrays = runSimulation(
+          neighbors.filter((neighbor) => neighbor.visible)
+        );
+        plantGeneLists.push(geneArrays);
+      }
+      setPossibleGeneCombinations(plantGeneLists);
+    } else {
+      var givenGeneCombinations = [];
+      for (var givenPlant of props.plants) {
+        givenGeneCombinations = givenPlant.genes.map((gene) => [gene]);
+        plantGeneLists.push(givenGeneCombinations);
+      }
+      setPossibleGeneCombinations(plantGeneLists);
+    }
+  }, [props.plants, props.simPlanter]);
+
   return (
     <Box
       className="Planter-Box"
@@ -35,7 +107,7 @@ function Planter(props) {
             changeGene={props.changeGene}
             areaName={plant.areaName}
             visible={plant.visible}
-            genes={plant.genes}
+            genes={possibleGeneCombinations[plant.id]}
             simPlanter={props.simPlanter}
           />
         ))}

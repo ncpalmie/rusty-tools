@@ -28,6 +28,7 @@ function Plant(props) {
               setCardVisible={setCardVisible}
               changeGene={props.changeGene}
               id={props.id}
+              simPlanter={props.simPlanter}
             />
           ) : null}
         </Box>
