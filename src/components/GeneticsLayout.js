@@ -1,12 +1,63 @@
-import React from "react";
-import { Box, Card, CardHeader, CardBody, Grid } from "grommet";
+import React, { useState } from "react";
+import { Box, Card, CardHeader, CardBody } from "grommet";
 import Planter from "./Planter";
 import "../css/GeneticsLayout.css";
 
+const generateGenes = () => {
+  const gene_array = ["x", "w", "g", "y", "h"];
+  const genes = [];
+  for (var i = 0; i <= 5; i++) {
+    genes.push(gene_array[Math.floor(Math.random() * gene_array.length)]);
+  }
+  return genes;
+};
+
+const determineNeighbors = (plantId) => {
+  const neighbors = [];
+
+  if (Math.floor(plantId / 3) !== 0) neighbors.push(plantId - 3);
+  if (plantId % 3 !== 0) neighbors.push(plantId - 1);
+  if (plantId % 3 !== 2) neighbors.push(plantId + 1);
+  if (Math.floor(plantId / 3) !== 2) neighbors.push(plantId + 3);
+
+  return neighbors;
+};
+
+const generatePlantStates = () => {
+  const plants = [];
+  for (var i = 0; i <= 8; i++) {
+    plants.push({
+      id: i,
+      areaName: "plant" + i,
+      visible: false,
+      genes: generateGenes(),
+      neighbors: determineNeighbors(i),
+    });
+  }
+  return plants;
+};
+
 function GeneticsLayout(props) {
+  const [plants, setPlants] = useState(generatePlantStates());
+
+  const togglePlant = (id) => {
+    const newPlants = [...plants];
+    if (newPlants[id].visible) {
+      newPlants[id].genes = generateGenes();
+    }
+    newPlants[id].visible = !newPlants[id].visible;
+    setPlants(newPlants);
+  };
+
+  const changeGene = (id, gene_index, new_gene) => {
+    const newPlants = [...plants];
+    newPlants[id].genes[gene_index] = new_gene;
+    setPlants(newPlants);
+  };
+
   return (
-    <Box className="Main-Content" direction="row">
-      <Box className="Planter-Side" justify="center" pad={{ left: "150px" }}>
+    <Box className="Main-Content" direction="row" gap="xlarge" justify="center">
+      <Box className="Planter-Side" justify="center">
         <Card
           className="Planter-Card"
           background="#C7CFA0"
@@ -27,25 +78,42 @@ function GeneticsLayout(props) {
               "and selecting the desired gene in the popup card."}
           </CardBody>
         </Card>
-        <Planter />
+        <Planter
+          generateGenes={generateGenes}
+          plants={plants}
+          togglePlant={togglePlant}
+          changeGene={changeGene}
+          simPlanter={false}
+        />
       </Box>
-      <Box className="Genetics-Side">
-        <Grid
-          className="Simulation-Grid"
-          rows={["1/3", "1/3", "1/3"]}
-          columns={["1/3", "1/3", "1/3"]}
-          areas={[
-            { name: "plant0", start: [0, 0], end: [0, 0] },
-            { name: "plant1", start: [1, 0], end: [1, 0] },
-            { name: "plant2", start: [2, 0], end: [2, 0] },
-            { name: "plant3", start: [0, 1], end: [0, 1] },
-            { name: "plant4", start: [1, 1], end: [1, 1] },
-            { name: "plant5", start: [2, 1], end: [2, 1] },
-            { name: "plant6", start: [0, 2], end: [0, 2] },
-            { name: "plant7", start: [1, 2], end: [1, 2] },
-            { name: "plant8", start: [2, 2], end: [2, 2] },
-          ]}
-        ></Grid>
+      <Box className="Genetics-Side" justify="center">
+        <Card
+          className="Planter-Card"
+          background="#C7CFA0"
+          margin={{ bottom: "medium" }}
+        >
+          <CardHeader className="Planter-Card-Header" alignSelf="center">
+            {"Gene Simulation"}
+          </CardHeader>
+          <CardBody
+            className="Planter-Card-Body"
+            alignSelf="center"
+            wrap={true}
+            pad="medium"
+          >
+            {"After entering plant genes and configuration in the leftside" +
+              " planter possible genetic results will appear here. Hover over" +
+              " corresponding plants to see what gene combinations may occur." +
+              "may occur. Listed gene combinations are equally likely. "}
+          </CardBody>
+        </Card>
+        <Planter
+          generateGenes={generateGenes}
+          plants={plants}
+          togglePlant={togglePlant}
+          changeGene={changeGene}
+          simPlanter={true}
+        />
       </Box>
     </Box>
   );

@@ -4,7 +4,7 @@ import PlantCard from "./PlantCard";
 import "../css/Plant.css";
 
 function Plant(props) {
-  const [cardVisible, setCardVisible] = useState(true);
+  const [cardVisible, setCardVisible] = useState(!props.simPlanter);
 
   return (
     <Box
