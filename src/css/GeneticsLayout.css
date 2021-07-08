@@ -13,13 +13,16 @@
   font-size: 16px;
 }
 
-.Planter-Side {
-}
-
-.Genetics-Side {
+.Info-Header {
+  font-family: "Staatliches";
+  font-size: 45px;
 }
 
 .Simulation-Grid {
   width: 550px;
   height: 550px;
+}
+
+.Info-Card-Box {
+  align-self: center;
 }
