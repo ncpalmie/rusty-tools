@@ -55,14 +55,21 @@ function Planter(props) {
       return cartestian(geneCombinations);
     };
 
+    const getSimGeneArrays = (plant) => {
+      const neighbors = plant.neighbors
+        .map((neighbor) => props.plants[neighbor])
+        .filter((neighbor) => neighbor.visible);
+      if (neighbors.length === 0) {
+        return plant.genes.map((gene) => [gene]);
+      } else if (neighbors.length === 1) {
+        return runSimulation([plant, neighbors[0]]);
+      }
+      return runSimulation(neighbors);
+    };
+
     if (props.simPlanter) {
       for (var plant of props.plants) {
-        const neighbors = plant.neighbors.map(
-          (neighbor) => props.plants[neighbor]
-        );
-        const geneArrays = runSimulation(
-          neighbors.filter((neighbor) => neighbor.visible)
-        );
+        const geneArrays = getSimGeneArrays(plant);
         plantGeneLists.push(geneArrays);
       }
       setPossibleGeneCombinations(plantGeneLists);
